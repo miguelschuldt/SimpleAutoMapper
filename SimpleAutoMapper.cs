@@ -3,14 +3,13 @@ using System.Reflection;
 
 namespace SimpleAutoMapper
 {
-    public class SimpleAutoMapper<W> where W : class, new()
+    public class SimpleAutoMapper<D> where D : class, new()
     {
-        public W Map(object origin)
+        public D Map(object origin)
         {
-            Type WType = typeof(W);
             Type OriginType = origin.GetType();
-            W w = new W();
-            foreach (PropertyInfo property in WType.GetProperties())
+            D w = new D();
+            foreach (PropertyInfo property in typeof(D).GetProperties())
             {
                 PropertyInfo OriginProperty = OriginType.GetProperty(property.Name);
                 if (OriginProperty != null) 
